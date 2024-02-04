@@ -1,3 +1,6 @@
-Next: try to edit and modify the codes to sync with Kyle's tutorial
+Next:
+continue tutorial
 
-23.15
+ownComponents = components that I make myself (my idea for improv and translating from /pages to /app)
+
+31.50
