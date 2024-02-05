@@ -3,4 +3,4 @@ continue tutorial
 
 ownComponents = components that I make myself (my idea for improv and translating from /pages to /app)
 
-31.50
+37:34
