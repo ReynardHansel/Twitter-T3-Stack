@@ -4,8 +4,10 @@ import { getServerAuthSession } from "~/server/auth";
 
 export default async function NewTweetForm() {
   const session = await getServerAuthSession();
-  console.log(session);
-  if (!session) return;
+  // console.log(session);
+  if (!session) return(
+    <p>Something wrong with session fetching, probly you're not logged in or something</p>
+  );
 
   return (
     <form className="flex flex-col gap-2 border-b px-4 py-2">
