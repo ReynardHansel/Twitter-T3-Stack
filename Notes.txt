@@ -8,4 +8,4 @@ somehow the fix from the tutorial for the "What's happening" textarea height whe
 On 48.24
 The solution here is not applied and I didn't make a seperate form function because there are no errors in my terminal, even though there is on Kyle's
 
-49:25
+52:57
