@@ -1,5 +1,5 @@
 Next:
-continue tutorial
+Try to convert the form on <NewTweetForm /> to a client component, then continue the tutorial
 
 ownComponents = components that I make myself (my idea for improv and translating from /pages to /app)
 
@@ -8,4 +8,4 @@ somehow the fix from the tutorial for the "What's happening" textarea height whe
 On 48.24
 The solution here is not applied and I didn't make a seperate form function because there are no errors in my terminal, even though there is on Kyle's
 
-52:57
+53:34
