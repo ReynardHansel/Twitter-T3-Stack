@@ -1,6 +1,5 @@
 Next:
-1. Try to receive the props needed for <Form /> next
-2. Try to convert the form on <NewTweetForm /> to a client component, then continue the tutorial
+Continue tutorial
 
 ownComponents = components that I make myself (my idea for improv and translating from /pages to /app)
 
@@ -10,5 +9,6 @@ On 48.24
 The solution here is not applied and I didn't make a seperate form function because there are no errors in my terminal, even though there is on Kyle's
 
 An attempt kinda worked by making the <Form /> it's own component (have not been fully tested and continued yet), try to receive the props needed for <Form /> next
+--> Working, accepted
 
 53:34

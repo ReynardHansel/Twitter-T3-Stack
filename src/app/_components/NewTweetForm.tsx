@@ -1,16 +1,7 @@
-// 'use client'
-
-import Button from "./Button";
-import ProfileImage from "./ProfileImage";
 import { getServerAuthSession } from "~/server/auth";
-import TextArea_TweetForm from "./ownComponents/TextArea_TweetForm";
 import Form from "./ownComponents/Form";
-// import { api } from "~/trpc/react";
-// import { api } from "./../../trpc/server";
 
 export default async function NewTweetForm() {
-  // const createTweet = api.tweet.create.mutate()
-  // const createTweet = api.tweet.create.useMutation()
   const session = await getServerAuthSession();
   // console.log(session);
 
@@ -22,10 +13,6 @@ export default async function NewTweetForm() {
       </p>
     );
 
-  function handleSubmit(){
-
-  }
-
   return (
     // <form onSubmit={handleSubmit} className="flex flex-col gap-2 border-b px-4 py-2">
     //   <div className="flex gap-4">
@@ -35,6 +22,6 @@ export default async function NewTweetForm() {
     //   <Button className="self-end">Tweet</Button>
     // </form>
 
-    <Form />
+    <Form usrImg={session.user.image} />
   );
 }
