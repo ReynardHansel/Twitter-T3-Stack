@@ -22,6 +22,7 @@ export default async function NewTweetForm() {
     //   <Button className="self-end">Tweet</Button>
     // </form>
 
-    <Form usrImg={session.user.image} />
+    //* Give default value for the usrImg (probly a default avatar img src url)
+    <Form usrImg={session.user.image || ''} />
   );
 }

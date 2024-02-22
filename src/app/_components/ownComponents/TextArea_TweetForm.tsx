@@ -1,5 +1,10 @@
 "use client";
-import { useState, useLayoutEffect, useRef, useCallback } from "react";
+import { useLayoutEffect, useRef, useCallback } from "react";
+
+type TextAreaProps = {
+  value: string,
+  onChange: (value: string) => void
+};
 
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
   if (textArea == null) return;
@@ -8,8 +13,7 @@ function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
   textArea.style.height = `${textArea.scrollHeight}px`;
 }
 
-export default function TextArea_TweetForm() {
-  const [inputValue, setInputValue] = useState("");
+export default function TextArea_TweetForm({ value, onChange }: TextAreaProps) {
   const textAreaRef = useRef<HTMLTextAreaElement>();
 
   const inputRef = useCallback((textArea: HTMLTextAreaElement) => {
@@ -20,14 +24,14 @@ export default function TextArea_TweetForm() {
 
   useLayoutEffect(() => {
     updateTextAreaSize(textAreaRef.current);
-  }, [inputValue]);
+  }, [value]);
 
   return (
     <textarea
       ref={inputRef}
       style={{ height: 0 }}
-      value={inputValue}
-      onChange={(e) => setInputValue(e.target.value)}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
       className="flex-grow resize-none overflow-hidden p-4 text-lg outline-none"
       placeholder="What's happening?"
     />
