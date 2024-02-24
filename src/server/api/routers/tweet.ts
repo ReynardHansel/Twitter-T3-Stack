@@ -1,4 +1,7 @@
 import { z } from "zod";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 import {
   createTRPCRouter,
@@ -10,11 +13,11 @@ export const tweetRouter = createTRPCRouter({
   create: protectedProcedure
     .input(z.object({ content: z.string() }))
     .mutation(async ({ input: { content }, ctx }) => {
-      const tweet = await ctx.prisma.tweet.create({
+      const tweet = await ctx.db.tweet.create({
         data: { content, userId: ctx.session.user.id },
       });
 
-      return tweet
+      return tweet;
     }),
 });
 
