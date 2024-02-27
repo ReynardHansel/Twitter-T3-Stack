@@ -1,5 +1,5 @@
 Next:
-It does look like the problem is in trying to connect tRPC to prisma, research that next
+Continue tutorial and try implementing things in <RecentTweets />
 
 Logs:
 ownComponents = components that I make myself (my idea for improv and translating from /pages to /app)
@@ -15,5 +15,8 @@ An attempt kinda worked by making the <Form /> it's own component (have not been
 24/2/2024
 FINALLY I CAN QUERY AND INSERT TO DATABASE ASDFGHJKL (works). The problem is in tweet.ts, you can't use ctx.prisma, instead it seems like in the app router you use ctx.db
 
+27/2/2024
+<RecentTweets /> is made to it's own component to be able to implement client functions
+
 Timestamp:
-53:34
+1:07:19

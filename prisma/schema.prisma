@@ -22,6 +22,9 @@ model Tweet {
 
     user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
     likes Like[]
+
+    @@unique([createdAt, id])
+    // means there's gonna be a combination of createdAt + id that makes a tweet unique
 }
 
 model Like {
