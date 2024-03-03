@@ -19,4 +19,4 @@ FINALLY I CAN QUERY AND INSERT TO DATABASE ASDFGHJKL (works). The problem is in 
 <RecentTweets /> is made to it's own component to be able to implement client functions
 
 Timestamp:
-1:07:19
+1:11:30
