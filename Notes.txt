@@ -1,5 +1,5 @@
 Next:
-Continue tutorial and try implementing things in <RecentTweets />
+Try to make a server session for client pages/components
 
 Logs:
 ownComponents = components that I make myself (my idea for improv and translating from /pages to /app)
@@ -18,5 +18,12 @@ FINALLY I CAN QUERY AND INSERT TO DATABASE ASDFGHJKL (works). The problem is in 
 27/2/2024
 <RecentTweets /> is made to it's own component to be able to implement client functions
 
+3/3/2024
+Moved session checking to page.tsx. So now, if the user is not logged in at all, there will be no tweet form or recent tweets.
+So I've decided that in <HeartButton /> in 1:17:31 to not be made (this far)
+
+7/3/2024
+Gave up and finally use SessionProvider so I can use useSession(). So far only used in <HeartButton />
+
 Timestamp:
-1:11:30
+1:17:31

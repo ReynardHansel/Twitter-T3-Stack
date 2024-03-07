@@ -10,6 +10,8 @@ export function RecentTweets() {
     { getNextPageParam: (lastPage) => lastPage.nextCursor },
   );
 
+  // console.log(session);
+
   return (
     <InfiniteTweetList
       tweets={tweets.data?.pages.flatMap((page) => page.tweets)}
