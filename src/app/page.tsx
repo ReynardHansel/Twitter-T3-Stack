@@ -10,11 +10,11 @@ export default async function Home() {
   const session = await getServerAuthSession();
   // const clientSession = await getServerSession()
 
-  if (!session) {
-    return (
-      <h1 className="text-center">You're not logged in</h1>
-    );
-  }
+  // if (!session) {
+  //   return (
+  //     <h1 className="text-center">You're not logged in</h1>
+  //   );
+  // }
 
   return (
     <>

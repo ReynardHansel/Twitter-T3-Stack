@@ -84,7 +84,7 @@ function TweetCard({
           </span>
         </div>
         <p className="whitespace-pre-wrap">{content}</p>
-        <HeartButton />
+        <HeartButton likedByMe={likedByMe} likeCount={likeCount} />
       </div>
     </li>
   );
