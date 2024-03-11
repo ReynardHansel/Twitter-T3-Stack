@@ -1,5 +1,5 @@
 Next:
-Try to make a server session for client pages/components
+Continue tutorial
 
 Logs:
 ownComponents = components that I make myself (my idea for improv and translating from /pages to /app)
@@ -26,4 +26,4 @@ So I've decided that in <HeartButton /> in 1:17:31 to not be made (this far)
 Gave up and finally use SessionProvider so I can use useSession(). So far only used in <HeartButton />
 
 Timestamp:
-1:22:55
+1:25:34
