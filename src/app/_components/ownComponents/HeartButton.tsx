@@ -3,11 +3,18 @@ import { VscHeart, VscHeartFilled } from "react-icons/vsc";
 import { IconHoverEffect } from "../IconHoverEffect";
 
 type HeartButtonProps = {
+  onClick: () => void;
+  isLoading: boolean;
   likedByMe: boolean;
   likeCount: number;
 };
 
-export function HeartButton({ likedByMe, likeCount }: HeartButtonProps) {
+export function HeartButton({
+  onClick,
+  isLoading,
+  likedByMe,
+  likeCount,
+}: HeartButtonProps) {
   //* useSession works
   const session = useSession();
   const HeartIcon = likedByMe ? VscHeartFilled : VscHeart;
@@ -25,6 +32,8 @@ export function HeartButton({ likedByMe, likeCount }: HeartButtonProps) {
 
   return (
     <button
+      disabled={isLoading}
+      onClick={onClick}
       className={`group -ml-2 flex items-center gap-1 self-start transition-colors duration-200 ${likedByMe ? "text-red-500" : "text-gray-500 hover:text-red-500 focus-visible:text-red-500"}`}
     >
       <IconHoverEffect red>

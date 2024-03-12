@@ -2,6 +2,7 @@ import Link from "next/link";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ProfileImage from "./ProfileImage";
 import { HeartButton } from "./ownComponents/HeartButton";
+import { api } from "~/trpc/react";
 // import { getServerAuthSession } from "~/server/auth";
 
 type Tweet = {
@@ -65,6 +66,49 @@ function TweetCard({
   likeCount,
   likedByMe,
 }: Tweet) {
+  const trpcUtils = api.useUtils();
+  const toggleLike = api.tweet.toggleLike.useMutation({
+    onSuccess: ({ addedLike }) => {
+
+      //* Basically doing the same/similar thing like .invalidate(). Should be better(?). But damn I don't understand it yet
+      //* The different thing is, it doesn't refetch the data, it keeps all the data
+      const updateData: Parameters<
+        typeof trpcUtils.tweet.infiniteFeed.setInfiniteData
+      >[1] = (oldData) => {
+        if (oldData == null) return;
+
+        const countModifier = addedLike ? 1 : -1;
+
+        return {
+          ...oldData,
+          pages: oldData.pages.map((page) => {
+            return {
+              ...page,
+              tweets: page.tweets.map((tweet) => {
+                if (tweet.id === id) {
+                  return {
+                    ...tweet,
+                    likeCount: tweet.likeCount + countModifier,
+                    likedByMe: addedLike,
+                  };
+                }
+
+                return tweet;
+              }),
+            };
+          }),
+        };
+      };
+
+      // await trpcUtils.tweet.infiniteFeed.invalidate(); //! not recommended, needs async await (?)
+      trpcUtils.tweet.infiniteFeed.setInfiniteData({}, updateData);
+    },
+  });
+
+  function handleToggleLike() {
+    toggleLike.mutate({ id });
+  }
+
   return (
     <li className="flex gap-4 border-b px-4 py-4">
       <Link href={`/profiles/${user.id}`}>
@@ -84,9 +128,13 @@ function TweetCard({
           </span>
         </div>
         <p className="whitespace-pre-wrap">{content}</p>
-        <HeartButton likedByMe={likedByMe} likeCount={likeCount} />
+        <HeartButton
+          onClick={handleToggleLike}
+          isLoading={toggleLike.isLoading}
+          likedByMe={likedByMe}
+          likeCount={likeCount}
+        />
       </div>
     </li>
   );
 }
-
