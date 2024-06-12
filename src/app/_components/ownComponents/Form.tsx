@@ -6,6 +6,7 @@ import Button from "../Button";
 import { api } from "~/trpc/react";
 import { FormEvent, useEffect } from "react";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 type FormProps = {
   usrImg: string;
@@ -13,6 +14,9 @@ type FormProps = {
 
 export default function Form({ usrImg }: FormProps) {
   const [inputValue, setInputValue] = useState<string>("");
+
+  const { data: session, status } = useSession();
+  const trpcUtils = api.useUtils();
 
   const createTweet = api.tweet.create.useMutation({
     // onSuccess: (newTweet) => {
@@ -24,12 +28,39 @@ export default function Form({ usrImg }: FormProps) {
     onSuccess: (newTweet) => {
       console.log("Tweet created successfully:", newTweet);
       setInputValue("");
+
+      if (status !== "authenticated") return;
+
+      trpcUtils.tweet.infiniteFeed.setInfiniteData({}, (oldData) => {
+        if (oldData == null || oldData.pages[0] == null) return
+
+        const newCacheTweet = {
+          ...newTweet,
+          likeCount: 0,
+          likedByMe: false,
+          user: {
+            id: session.user.id,
+            name: session.user.name,
+            image: session.user.image,
+          },
+        };
+
+        return {
+          ...oldData,
+          pages: [
+            {
+              ...oldData.pages[0],
+              tweets: [newCacheTweet, ...oldData.pages[0].tweets]
+            },
+            ...oldData.pages.slice(1)
+          ]
+        }
+      });
     },
     onError: (error) => {
       console.error("Failed to create tweet:", error);
     },
   });
-
 
   //* Function is working, we can continue the tutorial now it would seem
   function handleSubmit(e: FormEvent) {

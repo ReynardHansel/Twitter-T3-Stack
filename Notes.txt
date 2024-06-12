@@ -1,6 +1,8 @@
 Next:
 Continue tutorial
 
+Problems:
+
 Logs:
 ownComponents = components that I make myself (my idea for improv and translating from /pages to /app)
 
@@ -25,5 +27,11 @@ So I've decided that in <HeartButton /> in 1:17:31 to not be made (this far)
 7/3/2024
 Gave up and finally use SessionProvider so I can use useSession(). So far only used in <HeartButton />
 
+12/6/2024
+Problem: 
+1. In an attempt to press "Tweet" on form and making it not have to refresh the page (by using setInfiniteData onSuccess), it returns an error where "<Link href={`/profiles/${user.id}`}>" the id is undefined in <InfiniteTweetList />. I think it's an await problem or something
+Fix:
+1. I forgot to put a spread operator :")
+
 Timestamp:
-1:37:01
+1:40:33
